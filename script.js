@@ -10,19 +10,35 @@
  // Deposit button event handler
  const depositBtn = document.getElementById("add-deposit");
  depositBtn.addEventListener("click", function () {
-     const depositNumber = inputNumber("deposit-amount")
-     updateSpanText("current-deposit", depositNumber);
-     updateSpanText("current-balance", depositNumber);
-     document.getElementById("deposit-amount").value = "";
+     const depositNumber = inputNumber("deposit-amount");
+     if (isNaN(depositNumber)) {
+         alert('Please enter some amount!')
+     }
+     else if (depositNumber < 0) {
+        alert('Deposit cannot be negative!')
+     }
+     else {
+         updateSpanText("current-deposit", depositNumber);
+         updateSpanText("current-balance", depositNumber);
+         document.getElementById("deposit-amount").value = "";
+     }
  })
 
  // Deposit button event handler
  const withdrawBtn = document.getElementById("add-withdraw");
  withdrawBtn.addEventListener("click", function () {
-     const withdrawNumber = inputNumber("withdraw-amount")
-     updateSpanText("current-withdraw", withdrawNumber);
-     updateSpanText("current-balance", -1 * withdrawNumber);
-     document.getElementById("withdraw-amount").value = "";
+     const withdrawNumber = inputNumber("withdraw-amount");
+     if (isNaN(withdrawNumber)) {
+        alert('Please enter some amount!')
+     }
+     else if (withdrawNumber < 0) {
+        alert('Withdraw cannot be negative!')
+     }
+     else {
+        updateSpanText("current-withdraw", withdrawNumber);
+        updateSpanText("current-balance", -1 * withdrawNumber);
+        document.getElementById("withdraw-amount").value = "";
+    }
  })
 
  function inputNumber(inputId) {
